@@ -11,7 +11,7 @@ function Banner() {
         showStatus={false}
         showIndicators={false}
         showThumbs={false}
-        interval={5050}
+        interval={4050}
       >
         <div>
           <img loading="lazy" src="https://links.papareact.com/gi1" alt="" />

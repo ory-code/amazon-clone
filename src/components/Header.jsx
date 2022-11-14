@@ -1,7 +1,14 @@
 import React from "react";
 import Image from "next/image";
 
+//Next-Auth-v4
+//import { useSession } from "next-auth/react"
+import { signIn, signOut } from "next-auth/react";
+
 const Header = () => {
+  //const [session] = useSession()
+  //const { data: session, status } = useSession()
+
   return (
     <header>
       {/* top */}
@@ -39,8 +46,11 @@ const Header = () => {
         </div>
         {/* right */}
         <div className="text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap ">
-          <div className=" link ">
-            <p>Elon-musk</p>
+          <div onClick={signIn} className=" link ">
+            <p className="hover:underline">
+              {/* {session ? `${session.user.name}` : "SignIn"} */}
+              Sacha
+            </p>
             <p className="font-extrabold md:text-sm ">Account & Lists</p>
           </div>
           <div className=" link">
