@@ -50,7 +50,8 @@ const Header = () => {
         </div>
         {/* right */}
         <div className="text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap ">
-          <div onClick={signIn} className=" link ">
+          {/* </div><div onClick={signIn} className=" link "> */}
+          <div className=" link ">
             <p className="hover:underline">
               {/* {session ? `${session.user.name}` : "SignIn"} */}
               Sacha
