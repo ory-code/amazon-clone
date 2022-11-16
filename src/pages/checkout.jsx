@@ -6,10 +6,32 @@ import { useSelector } from "react-redux";
 import { selectItems, selectTotal } from "../slices/basketSlice";
 import CheckoutProduct from "../components/CheckoutProduct";
 import { useSession } from "next-auth/react";
+
+import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
+
+const stripePromise = loadStripe(process.env.STRIPE_PUBLIC_KEY);
+
 const checkout = () => {
   const items = useSelector(selectItems);
   const total = useSelector(selectTotal);
   const session = useSession();
+  const createCheckoutSession =  async () => {
+
+const stripe = await stripePromise;
+
+//backend-checkout session
+
+const checkoutSession = await axios.post('/api/create-checkout-session', {
+  items: items,
+  email: session.user.email
+})
+
+  }
+
+
+
+
   console.log("price", total);
   console.log("items", items);
   return (
@@ -45,6 +67,8 @@ const checkout = () => {
                 <Currency quantity={total} currency="EUR" />
               </span>
               <button
+              role="link"
+              onClick={createCheckoutSession}
                 disabled={!session}
                 className={`button mt-2 ${
                   !session &&
